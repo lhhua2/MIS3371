@@ -1,0 +1,323 @@
+  <!doctype html>
+<!--
+Program name: patient-form-2.html
+Author: Lien Hua
+Date created: 09-25-2025
+Date last edited: 11-04-2025
+Version: 2.0
+Description: homework2
+-->
+<html>
+    <head>
+        <link rel="stylesheet" href="hw2.css">
+    </head>
+    <body>
+        <div id="header">
+        <table width="100%">
+            <tr>
+                <td> <image src="Caduceus.png" width="300" height="200"> </td>
+                <td valign="top"> <h1> Valley Medical </h1> </td>
+                <td valign="bottom" align="right">Today's date: <span id="today"></span></td>
+            </tr>
+        </table>
+        </div>
+        <hr>
+    
+        <form action="homework2-thanks.html">
+        <div id="form"> 
+        <table class="form" width="100%">
+            <tr>
+                <th colspan="4"> <h3>Set up a new account</h3> </th>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="userid"> Username
+                </td>
+                <td align="left">
+                    <input id="userid" type="text" size="20" minlength="5" maxlength="30" required
+                            pattern="^[A-Za-z][A-Za-z0-9-_]{4,29}$" 
+                            onchange="checkid()" oninput="checkid()" 
+                            title="Minumum 5 characters; no spaces or 'special' characters.">
+                    <span id="idpw"> </span>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="pw"> Password
+                </td>
+                <td align="left">
+                    <input type="password" id="pw" required size="20" maxlength="30" minlength="8" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=\[\]{};':\\|,.<>/?]).{8,30}" 
+                    title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+                    onblur="passwordentry();checkid()" oninput="passwordentry();checkid()" 
+                    onfocus="passwordentry();checkid()" >
+                </td>
+            </tr>
+        
+            <tr>
+                <td align="right">
+                    <label for="pw2"> Verify Password 
+                </td>
+                <td align="left">
+                    <input type="password" required size="20" maxlength="20" id="pw2" placeholder=" " pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                    title="Password must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" 
+                    oninput="checkpw2()" onfocus="checkpw2()"
+                    onblur="checkpw2()">
+                    <span id="password2_text" >  
+                </td>
+            </tr>
+            <tr class="form">
+                <td>&nbsp</td><td id="password_message1">&nbsp</td>
+            </tr>
+            <tr class="form">
+                <td>&nbsp</td><td id="password_message2">&nbsp</td>
+            </tr>
+            <tr class="form">
+                <td>&nbsp</td><td id="password_message3">&nbsp</td>
+            </tr>
+            <tr class="form">
+                <td>&nbsp</td><td id="password_message4">&nbsp</td>
+            </tr>
+            <tr class="form">
+                <td>&nbsp</td><td id="password_message5">&nbsp</td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="fname"> First Name </label>
+                    </td>
+                    <td align="left">
+                        <input id="fname" required type="text" maxlength="30" size="10" pattern="^[A-Za-z'-]+$" title="Only letters, apostrophes, and dashes are allowed."> </input>
+                        <label for="mi"> MI </label>
+                        <input id="mi" type="text" maxlength="1" pattern="[A-Za-z]?" title="Please enter a single letter or leave blank"> </input>                  
+                        <label for="lname"> Last Name </label>
+                        <input id="lname" required type="text" maxlength="30"> </input>
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="address1"> Address Line 1
+                    </td>
+                    <td align="left">
+                        <input id="address1" required type="text" maxlength="30" size="60" oninput="checkadd1()">
+                        <span id="addr1_message">
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="address2"> Address Line 2
+                    </td>
+                    <td align="left">
+                        <input id="address2" type="text" maxlength="30" size="60" placeholder="Apt, Unit, etc...">
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="city"> City </label>
+                    <td align="left">
+                        <input id="city" required type="text" maxlength="30"> </input>
+                        <label for="state"> State </label>
+                        <select required id="state">
+                            <option value> </option>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>                  
+                        <label for="zip"> Zip code </label>
+                        <input id="zip" required type="text" maxlength="10" minlength="5" size="10" pattern="^\d{5}(-\d{4})?$"> </input>
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="DOB"> Date of birth
+                    <td align="left">
+                        <input id="DOB" required type="date" maxlength="30" placeholder="MM/DD/YYYY" value="25/09/2025" onchange="checkDOB()">
+                        <span id="dob_text">
+                    </td>
+            <tr>
+                    <td align="right">    
+                        <label for="SSN"> SSN
+                    <td align="left">
+                        <input id="SSN" required type="password" maxlength="11" placeholder="999-99-9999" pattern="^\d{3}-\d{2}-\d{4}$"> 
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="gender"> Gender 
+                    <td align="left">
+                        <input id="female" type="radio" name="gender" value="Female"> Female                       
+                        <input id="male" type="radio" name="gender" value="Male"> Male     
+                        <input id="other" type="radio" name="gender" value="Other"> Other               
+                    </td>       
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="phone"> Phone number
+                    <td align="left">
+                        <input type="tel" id="phone" name="phone" >
+                    </td>
+            </tr>
+            <tr>
+                    <td align="right">
+                        <label for="email"> Email address
+                    <td align="left">
+                        <input id="email" required type="email" size="25" placeholder="name@domain.tld" oninput="checkid()">
+                    </td>
+            </tr>
+        </table>
+        </div>
+    <hr>
+        <div id="questions">
+        <table>
+            <tr>
+            <td align="right">
+                <label> Do you have insurance? </td>
+            <td>
+                <input type="radio" name="ins"> Yes <br>
+                <input type="radio" name="ins"> No
+            </td>
+            </tr>
+            
+            <tr>
+                <td align="right">
+                <label for="medhis"> Medical History <br>(check all that apply): 
+                </td>
+                <td>
+                <input type="checkbox" id="check"> Asthma <br>
+                <input type="checkbox" id="check"> Diebetes <br>
+                <input type="checkbox" id="check"> Heart disease <br>
+                <input type="checkbox" id="check"> Cancer <br>
+                <input type="checkbox" id="check"> Other (please specify) <input type="text", id="othercheck">  
+                </td>             
+            </tr>
+
+            <tr>
+                <td align="right">
+                    <label for="slide">How do you feel today?</label>
+                </td>
+                <td align="center">
+                    &nbsp;(sucks) 0 
+                    <input type="range" class="slider" id="slide" name="slide" min="0" max="100" list="increments"> 
+                    100 (So good!)&nbsp;<br>
+                    <span id="rangedisplay"> </span>
+                <datalist id="increments">
+                    <option value="0"></option>
+                    <option value="10"></option>
+                    <option value="20"></option>
+                    <option value="30"></option>
+                    <option value="40"></option>
+                    <option value="50"></option>
+                    <option value="60"></option>
+                    <option value="70"></option>
+                    <option value="80"></option>
+                    <option value="90"></option>
+                    <option value="100"></option>
+                </datalist>
+                <script>
+                    let slider = document.getElementById("slide");
+                    let output = document.getElementById("rangedisplay");
+                        output.innerHTML = slider.value;
+                        slider.oninput = function() {
+                        output.innerHTML = this.value;
+                        }
+                </script>
+                </td>
+
+            <tr>
+                <td align="right">
+                <label for="textbox"> Please tell us anything else <br>you think we need to know </td>
+                <td>
+                <textarea type="text" id="textbox" rows="5" cols="50" placeholder="Tell us more details..."></textarea> </td>
+            </tr>
+
+        </table>
+        </div>
+<hr>
+    <tr>        
+        <td colspan="3">
+            <center>
+            <input type="reset">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="Review" onclick="reviewForm()">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="submit">
+            </center>
+        </td>
+    </tr>
+        </form>
+<hr>
+
+    <div id="reviewSection" style="display:none; margin-top: 30px;  padding: 10px; background-color: rgb(187, 234, 187)">
+    <h3>Review Your Information</h3>
+    <table class ="reviewsection">
+        <tr><td>First Name:</td><td id="review_fname"></td></tr>
+        <tr><td>Middle Initial:</td><td id="review_mi"></td></tr>
+        <tr><td>Last Name:</td><td id="review_lname"></td></tr>
+        <tr><td>Username:</td><td id="review_userid"></td></tr>
+        <tr><td>Email:</td><td id="review_email"></td></tr>
+        <tr><td>Phone:</td><td id="review_phone"></td></tr>
+        <tr><td>Date of Birth:</td><td id="review_dob"></td></tr>
+        <tr><td>Address Line 1:</td><td id="review_addr1"></td></tr>
+        <tr><td>Address Line 2:</td><td id="review_addr2"></td></tr>
+        <tr><td>City:</td><td id="review_city"></td></tr>
+        <tr><td>State:</td><td id="review_state"></td></tr>
+        <tr><td>Zip Code:</td><td id="review_zip"></td></tr>
+        <tr><td>Gender:</td><td id="review_gender"></td></tr>
+    </table>
+</div>
+<hr>
+    <div id="footer">
+            Contact us via: <br> 
+            <a id="ig" href="https://www.instagram.com/">Instagram</a><br>
+            <a id="fb" href="https://www.facebook.com/">Facebook</a>
+    </div>
+
+    <script src="hw2.js"></script>
+    </body>
+</html>
